@@ -14,7 +14,7 @@ class App(models.Model):
 class KeyValue(models.Model):
     key = models.CharField(max_length=128)
     value = models.CharField(max_length=128)
-    app = models.ForeignKey(App)
+    app = models.ForeignKey(App ,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.key
