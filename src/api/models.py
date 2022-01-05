@@ -7,15 +7,15 @@ docker_client = docker.from_env()
 class App(models.Model):
     name = models.CharField(max_length=128)
     image = models.CharField(max_length=512)
-    command = models.CharField(max_length=128)
+    command = models.CharField(blank=True, max_length=128)
     
     def __str__(self):
         return self.name
 
     @property
-    def environment_variables(self):
+    def env_vars_dict(self):
         vars_dict = {}
-        for env_var in self.env_vars:
+        for env_var in self.env_vars.all():
             vars_dict[env_var.key] = env_var.value
         return vars_dict
 
