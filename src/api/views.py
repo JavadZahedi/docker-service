@@ -7,7 +7,7 @@ from django.utils import timezone
 from rest_framework import views, viewsets, status
 from rest_framework.response import Response
 
-from .models import App, KeyValue, Container
+from .models import App, Container
 from .serializers import AppSerializer
 
 

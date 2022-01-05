@@ -1,18 +1,18 @@
 from rest_framework import serializers
 
-from .models import App, KeyValue
+from .models import App, EnvVar
 
 
-class KeyValueSerializer(serializers.ModelSerializer):
+class EnvVarSerializer(serializers.ModelSerializer):
      
     class Meta:
-        model = KeyValue
+        model = EnvVar
         fields = ['key', 'value']
 
 
 class AppSerializer(serializers.ModelSerializer):
 
-    env_vars = KeyValueSerializer(many=True)
+    env_vars = EnvVarSerializer(many=True)
 
     def create_new_env_vars(self, new_env_vars, app):
         added_keys = set() # Store added keys to prevent duplicate keys
@@ -21,7 +21,7 @@ class AppSerializer(serializers.ModelSerializer):
             value = new_env_var['value']
             if key not in added_keys:
                 added_keys.add(key)
-                KeyValue.objects.create(key=key, value=value, app=app)
+                EnvVar.objects.create(key=key, value=value, app=app)
 
     def create(self, validated_data):
         new_env_vars = validated_data.pop('env_vars')

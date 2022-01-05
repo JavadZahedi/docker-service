@@ -20,7 +20,7 @@ class App(models.Model):
         return vars_dict
 
 
-class KeyValue(models.Model):
+class EnvVar(models.Model):
     key = models.CharField(max_length=128)
     value = models.CharField(max_length=128)
     app = models.ForeignKey(
