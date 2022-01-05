@@ -12,7 +12,8 @@ urlpatterns = [
     # POST GET DELETE PUT PATCH
     path('', include(router.urls)),
     # GET
-    path('run/<int:id>/', views.AppRunView.as_view()),
+    path('run/<int:id>/', views.AppRunView.as_view(), name='app-run'),
     # GET
-    path('history/<int:id>/', views.AppHistoryView.as_view()),
+    path('history/<int:id>/', views.AppHistoryView.as_view(),
+         name='app-history'),
 ]
